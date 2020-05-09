@@ -16,13 +16,9 @@ public class Teacher {
     @NotBlank
     private String lastName;
     private String profession;
-    @OneToOne(fetch = FetchType.LAZY, optional = false,
-            cascade =  CascadeType.ALL)
-    @JoinColumn(name = "user_id",unique= true, nullable=true, insertable=true, updatable=true)
+    @OneToOne
+    @JoinColumn(name = "user_id",unique= true, insertable=true, updatable=true)
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "university_id", nullable = false)
-    private University university;
     @OneToMany(mappedBy = "teacher")
     private Set<SportClass> sportClasses;
 
@@ -66,13 +62,6 @@ public class Teacher {
         this.user = user;
     }
 
-    public University getUniversity() {
-        return university;
-    }
-
-    public void setUniversity(University university) {
-        this.university = university;
-    }
 
     public Set<SportClass> getSportClasses() {
         return sportClasses;

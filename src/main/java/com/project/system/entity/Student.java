@@ -1,40 +1,26 @@
 package com.project.system.entity;
-
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity(name = "ps_student")
-public class Student{
-
+public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
-    @NotBlank
     private String firstName;
-    @NotBlank
     private String lastName;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false,
-            cascade =  CascadeType.ALL)
-    @JoinColumn(name = "user_id",unique= true, nullable=true, insertable=true, updatable=true)
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "university_id", nullable = false)
-    private University university;
 
     @OneToMany(mappedBy = "student")
     @MapKey(name = "id")
     private List<StudentClass> studentClasses;
 
-    public List<StudentClass> getStudentClass() {
-        return studentClasses;
-    }
+    public Student(){
 
-    public void setStudentClass(List<StudentClass> sportClasses) {
-        this.studentClasses = sportClasses;
     }
 
     public Long getStudentId() {
@@ -69,11 +55,11 @@ public class Student{
         this.user = user;
     }
 
-    public University getUniversity() {
-        return university;
+    public List<StudentClass> getStudentClasses() {
+        return studentClasses;
     }
 
-    public void setUniversity(University university) {
-        this.university = university;
+    public void setStudentClasses(List<StudentClass> studentClasses) {
+        this.studentClasses = studentClasses;
     }
 }

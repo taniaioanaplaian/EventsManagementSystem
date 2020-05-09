@@ -17,6 +17,7 @@ public class SportEvent {
     private String location;
     @Enumerated(value = EnumType.STRING)
     private SportType type;
+
     @OneToMany(mappedBy = "sportEvent")
     private Set<SportClass> sportEvents;
 

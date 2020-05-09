@@ -1,17 +1,16 @@
 package com.project.system.entity;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name = "ps_student_class")
-public class StudentClass {
+public class StudentClass implements Serializable {
 
     @EmbeddedId
     private StudentClassKey id;
-
     @ManyToOne
     @MapsId("studentId")
     @JoinColumn(name = "student_id")
     private Student student;
-
     @ManyToOne
     @MapsId("classId")
     @JoinColumn(name = "class_id")

@@ -3,10 +3,11 @@
 import com.project.system.enumeration.UserRole;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
  @Entity(name = "ps_user")
- public class User {
+ public class User implements Serializable {
 
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,9 @@ import java.util.Objects;
          this.role = role;
      }
 
+     public void setUserId(Long id){
+         this.userId = id;
+     }
      public Long getUserId() {
          return userId;
      }
